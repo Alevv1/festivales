@@ -28,11 +28,10 @@
                 </li>
                 <li class="nav-item">
                     @can('participate in tours')
-                        <a class="nav-link {{ request()->routeIs('tours.index') ? 'active' : '' }}" href="{{ route('tours.index') }}">
+                        <a class="nav-link rainbow-effect {{ request()->routeIs('tours.index') ? 'active' : '' }}" href="{{ route('tours.index') }}">
                             {{ __('Tours') }}
                         </a>
                     @endcan
-
                 </li>
             </ul>
 
