@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-12">
                 <h2 class="font-weight-bold text-dark">
-                    {{ __('Ultimos Festivales') }}
+                    {{ __('Últimos Festivales') }}
                 </h2>
             </div>
         </div>
