@@ -25,6 +25,11 @@ class RoleAndPermissionSeeder extends Seeder
 
         $faker = Faker::create();
 
+        $storagePath = 'public/storage/profiles';
+        if (!is_dir($storagePath)) {
+            mkdir($storagePath, 0777, true);
+        }
+
         $djs = [
             [
                 'name' => 'DJ PIRATA',
@@ -32,18 +37,17 @@ class RoleAndPermissionSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'age' => $faker->numberBetween(18, 50),
                 'points' => $faker->numberBetween(0, 100),
-                'profile_photo_path' => $faker->image('public/storage/profiles', 400, 300, null, false),
-                'last_festivals' => json_encode($faker->words()), // Formato JSON
-                ],
+                'profile_photo_path' => $this->generateProfileImage($faker, $storagePath),
+                'last_festivals' => json_encode($faker->words()),
+            ],
             [
                 'name' => 'DJ SENSATION',
                 'email' => 'djsensation@example.com',
                 'password' => bcrypt('12345678'),
                 'age' => $faker->numberBetween(18, 50),
                 'points' => $faker->numberBetween(0, 100),
-                'profile_photo_path' => $faker->image('public/storage/profiles', 400, 300, null, false),
-                'last_festivals' => json_encode($faker->words()), // Formato JSON
-
+                'profile_photo_path' => $this->generateProfileImage($faker, $storagePath),
+                'last_festivals' => json_encode($faker->words()),
             ],
             [
                 'name' => 'DJ LARAVEL',
@@ -51,12 +55,10 @@ class RoleAndPermissionSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'age' => $faker->numberBetween(18, 50),
                 'points' => $faker->numberBetween(0, 100),
-                'profile_photo_path' => $faker->image('public/storage/profiles', 400, 300, null, false),
-                'last_festivals' => json_encode($faker->words()), // Formato JSON
-
+                'profile_photo_path' => $this->generateProfileImage($faker, $storagePath),
+                'last_festivals' => json_encode($faker->words()),
             ],
         ];
-
 
         foreach ($djs as $djData) {
             $dj = User::firstOrCreate(
@@ -65,7 +67,17 @@ class RoleAndPermissionSeeder extends Seeder
             );
             $dj->assignRole($djRole);
         }
+    }
 
+    //a veces faker no puede generar una imagen, por lo que se usa un valor default
+    private function generateProfileImage($faker, $storagePath)
+    {
+        $profileImagePath = $faker->image($storagePath, 400, 300, null, false);
 
+        if ($profileImagePath == 0) {
+            return 'default.png';
+        }
+
+        return $profileImagePath;
     }
 }
