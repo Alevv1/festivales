@@ -8,8 +8,7 @@
 
 @section('content')
 
-    <div class="container mt-5">
-        <!-- Page Header -->
+    <div class="container mt-5 h-100 min-h-screen" style="min-height: 100%">        <!-- Page Header -->
         <div class="row">
             <div class="col-12">
                 <h2 class="font-weight-bold text-dark">

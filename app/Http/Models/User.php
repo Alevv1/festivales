@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Festival::class);
     }
+
+    public function getImage()
+    {
+        return $this->profile_photo_url;
+    }
 }
