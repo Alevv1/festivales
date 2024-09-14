@@ -18,7 +18,7 @@
                     <div class="card h-100"
                          style="width: 25rem; {{ $index == 0 ? 'border: 3px solid gold;' : ($index == 1 ? 'border: 3px solid silver;' : ($index == 2 ? 'border: 3px solid #cd7f32;' : '')) }}">
                         <div class="position-relative">
-                            <img src="{{ asset('storage/profiles/' . $dj->profile_photo_path) }}" class="card-img-top" alt="...">
+                            <img src="{{  asset('storage/profiles/' . basename($dj->profile_photo_path)) }}" class="card-img-top" alt="...">
                             @if ($index == 0)
                                 <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2 fs-5">🥇 1er Puesto</span>
                             @elseif ($index == 1)
@@ -28,7 +28,7 @@
                             @endif
                         </div>
                         <div class="card-body text-center">
-                            <h5 class="card-title">{{ $dj->name }}</h5>
+                            <a href="{{ route('djs.show', $dj->id) }}" class="card-title text-decoration-none display-6">{{ $dj->name }}</a>
                             <p class="card-text">{{ $dj->points }} PUNTOS</p>
                             <a href="{{ route('djs.show', $dj->id) }}" class="btn btn-dark">Ver perfil</a>
                         </div>
