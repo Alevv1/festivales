@@ -17,6 +17,10 @@
 ## Laravel
 - `composer install`
 - `php artisan key:generate`
-- `php artisan migrate:fresh --seed`
 - `php artisan storage:link`
+- `php artisan migrate:fresh --seed`
+
+## Ejecutar
 - `php artisan serve`
+- `npm run dev`
+
